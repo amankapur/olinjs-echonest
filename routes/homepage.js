@@ -7,7 +7,7 @@ var echo = echojs({
 // all the action goes down on the homepage
 
 exports.display = function(req, res){
-	res.render('homepage', {title: 'Welcome to Accapellizer'});
+	res.render('homepage', {title: 'Welcome to Acappellizer'});
 }
 
 // find a song
