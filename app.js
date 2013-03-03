@@ -6,6 +6,8 @@
 var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
+  , homepage = require('./routes/homepage')
+  , echojs = require('echojs')
   , http = require('http')
   , db = require('./models')  
   , path = require('path');
@@ -30,8 +32,12 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/', routes.index);
+// GETS
+app.get('/', homepage.display);
 app.get('/users', user.list);
+
+// POSTS
+app.post('/homepage/searchSong', homepage.searchSong);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

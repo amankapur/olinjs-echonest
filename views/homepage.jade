@@ -1,0 +1,15 @@
+extends layout
+
+block content
+	h1 Acapellizer
+	h4	 Sing it Loud, Sing it Proud
+	div
+		form(class='uploadSong', method='post', action='/homepage/searchSong')
+			label Song Name
+			input(type="text", name="song_name")
+			label Artist Name
+			input(type="text", name="artist_name")
+			br
+			button.btn(type="submit", id="upload-song-button")
+				i.icon-search
+				| Find Song 
