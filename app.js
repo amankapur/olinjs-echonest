@@ -8,8 +8,7 @@ var express = require('express')
   , user = require('./routes/user')
   , homepage = require('./routes/homepage')
   , echojs = require('echojs')
-  , http = require('http')
-  , db = require('./models')  
+  , http = require('http') 
   , path = require('path');
 
 var app = express();
@@ -30,6 +29,7 @@ app.configure(function(){
 
 app.configure('development', function(){
   app.use(express.errorHandler());
+  mongoose.connect("mongodb://app:sexybitch@ds043467.mongolab.com:43467/echonest");
 });
 
 // GETS
