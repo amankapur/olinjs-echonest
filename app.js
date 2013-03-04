@@ -8,6 +8,7 @@ var express = require('express')
   , user = require('./routes/user')
   , homepage = require('./routes/homepage')
   , echojs = require('echojs')
+  , mongoose = require('mongoose')
   , http = require('http') 
   , path = require('path');
 
