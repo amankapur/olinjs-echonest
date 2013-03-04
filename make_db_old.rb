@@ -1,5 +1,6 @@
 require 'rest-client'
 require 'json'
+
 MONGO_KEY = 'a4-xIcHUAl_iBb9iqoq8pClCmk2DplxI'
 ECHO_KEY = 'LKME7OQAVE5RXMYGG'
 
@@ -17,28 +18,31 @@ acapella_songs = acapella_search['response']['songs']
 
 #puts acapella_songs
 
+puts acapella_songs
 
 acapella_songs.each do |song|
 
 	song_id = song['id']
-	puts song_id
+	
 
 
-	song_url = echo_url + 'song/profile?api_key=' + ECHO_KEY + '&format=json&id=' + song_id + '&bucket=audio_summary'
+	song_url= echo_url + 'song/profile?api_key=' + ECHO_KEY + '&format=json&id=' + song_id + '&bucket=audio_summary'
 	song_data = JSON(RestClient.get song_url)
 	analysis_url = song_data['response']['songs'][0]['audio_summary']['analysis_url']
 	
 	song_segments = JSON(RestClient.get analysis_url)['segments']
 
 	song_segments.each do |segment|
-		# delta T  = segment['duration']
+		# deltaT  = segment['duration']
 		# pitch = segment['pitches']
 		# timbre = segment['timbre']
-		# push to monogolab
-		return
+
+		# puts segment
+		
+		# return
 	end
 	
-	return
+	# return
 
 end
 
