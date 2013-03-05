@@ -1,0 +1,50 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'allowCrossDomain' ]
+2 info using npm@1.2.2
+3 info using node@v0.8.18
+4 verbose read json /Users/reyner/Documents/junk/olinjs/olinjs-echonest/package.json
+5 verbose read json /Users/reyner/Documents/junk/olinjs/olinjs-echonest/node_modules/echojs/package.json
+6 verbose read json /Users/reyner/Documents/junk/olinjs/olinjs-echonest/node_modules/express/package.json
+7 verbose read json /Users/reyner/Documents/junk/olinjs/olinjs-echonest/node_modules/jade/package.json
+8 verbose read json /Users/reyner/Documents/junk/olinjs/olinjs-echonest/node_modules/mongoose/package.json
+9 verbose read json /Users/reyner/Documents/junk/olinjs/olinjs-echonest/node_modules/request/package.json
+10 verbose from cache /Users/reyner/Documents/junk/olinjs/olinjs-echonest/package.json
+11 verbose readDependencies using package.json deps
+12 verbose cache add [ 'allowCrossDomain', null ]
+13 verbose cache add name=undefined spec="allowCrossDomain" args=["allowCrossDomain",null]
+14 verbose parsed url { pathname: 'allowCrossDomain',
+14 verbose parsed url   path: 'allowCrossDomain',
+14 verbose parsed url   href: 'allowCrossDomain' }
+15 silly lockFile 26103a6a-allowCrossDomain allowCrossDomain
+16 verbose lock allowCrossDomain /Users/reyner/.npm/26103a6a-allowCrossDomain.lock
+17 silly lockFile 26103a6a-allowCrossDomain allowCrossDomain
+18 verbose addNamed [ 'allowCrossDomain', '' ]
+19 verbose addNamed [ null, '' ]
+20 silly lockFile 120cfe39-allowCrossDomain allowCrossDomain@
+21 verbose lock allowCrossDomain@ /Users/reyner/.npm/120cfe39-allowCrossDomain.lock
+22 silly addNameRange { name: 'allowCrossDomain', range: '', hasData: false }
+23 verbose url raw allowCrossDomain
+24 verbose url resolving [ 'https://registry.npmjs.org/', './allowCrossDomain' ]
+25 verbose url resolved https://registry.npmjs.org/allowCrossDomain
+26 info trying registry request attempt 1 at 12:54:11
+27 http GET https://registry.npmjs.org/allowCrossDomain
+28 http 404 https://registry.npmjs.org/allowCrossDomain
+29 silly registry.get cb [ 404,
+29 silly registry.get   { server: 'CouchDB/1.2.1 (Erlang OTP/R15B03)',
+29 silly registry.get     date: 'Tue, 05 Mar 2013 17:54:11 GMT',
+29 silly registry.get     'content-type': 'application/json',
+29 silly registry.get     'content-length': '52',
+29 silly registry.get     'cache-control': 'must-revalidate' } ]
+30 silly lockFile 120cfe39-allowCrossDomain allowCrossDomain@
+31 error 404 'allowCrossDomain' is not in the npm registry.
+31 error 404 You should bug the author to publish it
+31 error 404
+31 error 404 Note that you can also install from a
+31 error 404 tarball, folder, or http url, or git url.
+32 error System Darwin 12.2.0
+33 error command "node" "/usr/local/bin/npm" "install" "allowCrossDomain"
+34 error cwd /Users/reyner/Documents/junk/olinjs/olinjs-echonest
+35 error node -v v0.8.18
+36 error npm -v 1.2.2
+37 error code E404
+38 verbose exit [ 1, true ]

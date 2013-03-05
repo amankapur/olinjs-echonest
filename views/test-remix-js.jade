@@ -7,7 +7,10 @@ block content
   script(src='http://echonest.github.com/remix/js/wavesurfer/wavesurfer.js')
   script(src='http://echonest.github.com/remix/js/wavesurfer/drawer.js')
   //- script(src='/javascripts/numeric-1.2.6.js')
-  script(src='/javascripts/player.js')
+  if (song == "trouble")
+    script(src='/javascripts/player_swift.js')
+  else
+    script(src='/javascripts/player.js')
   .container
     .well
       h1
