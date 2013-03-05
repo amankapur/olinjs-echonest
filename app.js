@@ -38,7 +38,8 @@ app.configure('development', function(){
 // GETS
 app.get('/', homepage.display);
 app.get('/users', user.list);
-app.get('/test-remixer', homepage.test_remixer);
+app.get('/test-remixer', homepage.test_remixer);  
+app.get('/acapellized', homepage.test_remixer);
 
 // POSTS
 app.post('/homepage/searchSong', homepage.searchSong);

@@ -48,7 +48,8 @@ exports.searchSong = function(req, res){
       var anal = track.audio_summary.analysis_url;
       request({url: anal, json:true}, function(error, response, data){
         //res.send(response.body.segments);
-        res.render('display_acapella', {title: "Your Song, Acapellized!", song: req.body.song_name});
+        //res.render('test-remix-js', {title: "Your Song, Acapellized!", song: req.body.song_name});
+        res.redirect('/acapellized');
       });
     });
 	});
@@ -56,7 +57,7 @@ exports.searchSong = function(req, res){
 
 // testing out remix.js
 exports.test_remixer = function(req, res){
-  res.render('test-remix-js', {title: "Testing Remix.js"});
+  res.render('test-remix-js', {title: "Acapellized Results"});
 }
 
 
