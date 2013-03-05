@@ -7,28 +7,9 @@ block content
   script(src='http://echonest.github.com/remix/js/wavesurfer/wavesurfer.js')
   script(src='http://echonest.github.com/remix/js/wavesurfer/drawer.js')
   script(type='text/javascript')
-<<<<<<< Updated upstream
   script(src='/javascripts/numeric-1.2.6.js')
   script(src='/javascripts/player.js')
-  .navbar.navbar-inverse.navbar-fixed-top
-    .navbar-inner
-      .container
-        a.brand(href='index.html') Echo Nest Remix
-        .nav-collapse.collapse
-          ul.nav
-            li
-              a(href='http://echonest.github.com/remix/python.html') Python
-            li
-              a(href='http://echonest.github.com/remix/javascript.html') JavaScript
-            li
-              a(href='http://echonest.github.com/remix/examples.html') Examples
-            li
-              a(href='http://echonest.github.com/remix/who.html') Who
-        //
-          /.nav-collapse 
-  //
-    /.navbar 
-=======
+
     // First-beat extraction and assembly
     var apiKey = 'FILDTEOIK2HBORODV';
     var trackID = 'TRCYWPQ139279B3308';
@@ -103,39 +84,27 @@ block content
     }
     window.onload = init;
 
->>>>>>> Stashed changes
   .container
     .well
       h1
-<<<<<<< Updated upstream
-        | remix.js:  one.
-=======
         | And the results are...
         h1
           #theCode
             pre.
->>>>>>> Stashed changes
               
     div#info
     section
       div#waveform
-        h2 First Track
+        h2 Original Track
         canvas#waveCanvas(width='1024px',height='100px')
         br
         button.btn.btn-inverse.btn-original(onclick='player.play(0, track.analysis.beats);') Play First Track
         button.btn.btn-original(onclick='player.stop()') Stop First Track
       div#waveform2
-        h2 Second Track
+        h2 Acapellized Track
         canvas#waveCanvas2(width='1024px',height='100px')
         br
         button.btn.btn-inverse.btn-original(onclick='player.play(0, track2.analysis.beats);') Play Second Track
         button.btn.btn-original(onclick='player.stop()') Stop Second Track
-      div#newWaveform
-        h2 Remixed Track
-        canvas#RemixedWaveCanvas(width='1024px',height='100px')
-        br
-        button.btn.btn-inverse.btn-remixed(onclick='player.play(0, remixed);') Play Remix
-        button.btn.btn-remixed(onclick='player.stop()') Stop Remix
-        span#downloadButton
-        
+
     img(src='http://the.echonest.com/static/img/logos/EN_P_on_White_Horizontal.gif', id="echonest-logo")
