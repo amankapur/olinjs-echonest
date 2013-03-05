@@ -43,3 +43,11 @@ exports.searchSong = function(req, res){
     });
 	});
 };
+
+// testing out remix.js
+exports.test_remixer = function(req, res){
+  res.render('test-remix-js', {title: "Testing Remix.js"});
+}
+
+
+
