@@ -37,7 +37,8 @@ exports.searchSong = function(req, res){
       var track = profile.response.songs[0];
       var anal = track.audio_summary.analysis_url;
       request({url: anal, json:true}, function(error, response, data){
-        res.send(response.body.segments);
+        //res.send(response.body.segments);
+        res.render('display_acapella', {title: "Your Song, Acapellized!"});
       });
     });
 	});
