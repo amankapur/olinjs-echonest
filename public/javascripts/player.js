@@ -31,14 +31,6 @@ function init() {
         cursorColor: '#888888'
     });
     
-    var remixedWavesurfer = Object.create(WaveSurfer);
-    remixedWavesurfer.init({
-        canvas: document.querySelector('#RemixedWaveCanvas'),
-        waveColor: '#00ACEB',
-        progressColor: '#000000',
-        loadingColor: '#000000',
-        cursorColor: '#00ACEB'
-    });
 
     if (window.webkitAudioContext === undefined) {
         error("Sorry, this app needs advanced web audio. Your browser doesn't"
@@ -79,27 +71,27 @@ function init() {
                         wavesurfer2.loadBuffer(track2.analysis.beats);
                         $('.btn-original').removeAttr('disabled');
                         // Extract the first and third beats of track 1 with the second and fourth beats of track 2.
-                        remixed = new Array();
-                        var meter = parseInt(track.analysis.track.time_signature);
-                        var numberOfBeats = Math.min(track.analysis.beats.length, track2.analysis.beats.length);
-                        for (var i=0; i < numberOfBeats; i++) {
-                            if (i % meter == 0 || i % meter == 2) {
-                                remixed.push(track.analysis.beats[i])
-                            } else if (i % meter == 1 || i % meter == 3) {
-                                remixed.push(track2.analysis.beats[i])
-                            }
-                        }
-                        $("#info").text("Remix complete!");
+                        // remixed = new Array();
+                        // var meter = parseInt(track.analysis.track.time_signature);
+                        // var numberOfBeats = Math.min(track.analysis.beats.length, track2.analysis.beats.length);
+                        // for (var i=0; i < numberOfBeats; i++) {
+                        //     if (i % meter == 0 || i % meter == 2) {
+                        //         remixed.push(track.analysis.beats[i])
+                        //     } else if (i % meter == 1 || i % meter == 3) {
+                        //         remixed.push(track2.analysis.beats[i])
+                        //     }
+                        // }
+                        // $("#info").text("Remix complete!");
             
-                        remixedWavesurfer.loadBuffer(remixed);
+                        // remixedWavesurfer.loadBuffer(remixed);
 
-                        // Only use the filesystem if we have access to it.
-                        if (fs) {
-                            remixer.saveRemixLocally(fs, remixed, function(saveURL) {
-                                $('#downloadButton').html('<a href="' + saveURL + '" target="_blank">Download Remix</a>')
-                            });
-                        }
-                        $('.btn-remixed').removeAttr('disabled');
+                        // // Only use the filesystem if we have access to it.
+                        // if (fs) {
+                        //     remixer.saveRemixLocally(fs, remixed, function(saveURL) {
+                        //         $('#downloadButton').html('<a href="' + saveURL + '" target="_blank">Download Remix</a>')
+                        //     });
+                        // }
+                        // $('.btn-remixed').removeAttr('disabled');
 
                     }
                 });
