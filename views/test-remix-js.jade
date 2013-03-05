@@ -1,57 +1,126 @@
-body
-  script
-      // These are the things you need:  an API key, the track ID, and the path to the track
-      var apiKey = 'YOUR_API_KEY';
-      var trackID = 'THE_TRACK_ID';
-      var trackURL = 'audio/THE_AUDIO_FILE.mp3'
-      // Set up the key variables
-      var remixer;
-      var player;
-      var track;
-      var remixed;
-      // The main function.
-      function init() {
-      // Make sure the browser supports Web Audio.
-      if (window.webkitAudioContext === undefined) {
-      error("Sorry, this app needs advanced web audio. Your browser doesn't"
-      + " support it. Try the latest version of Chrome");
-      } else {
-      // These set up the WebAudio playback environment, and create the remixer and player.
-      var context = new webkitAudioContext();
-      remixer = createJRemixer(context, $, apiKey);
-      player = remixer.getPlayer();
-      $("#info").text("Loading analysis data...");
-      // The key line.  This prepares the track for remixing:  it gets
-      // data from the Echo Nest analyze API and connects it with the audio file.
-      // All the remixing takes place in the callback function.
-      remixer.remixTrackById(trackID, trackURL, function(t, percent) {
-      track = t;
-      // Keep the user update with load times
-      $("#info").text(percent + "% of the track loaded");
-      if (percent == 100) {
-      $("#info").text(percent + "% of the track loaded, remixing...");
-      }
-      // Do the remixing!
-      if (track.status == 'ok') {
-      // This array holds the chunks of audio that we're going to play back
-      remixed = new Array();
-      // This loops over each beat in the track.
-      // If the index of the beat is a multiple of four, we append the beat to the playback array.
-      for (var i=0; i \\< track.analysis.beats.length; i++) {
-      if (i % 4 == 0) {
-      remixed.push(track.analysis.beats[i])
-      }
-      }
-      $("#info").text("Remix complete!");
-      }
-      });
-      }
-      }
-      // Run the main function once the page is loaded.
+extends layout
+
+block content
+  script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js')
+  script(src='http://echonest.github.com/remix/js/examples/assets/js/bootstrap.min.js')
+  script(type='text/javascript', src='/javascripts/remix.js')
+  script(src='http://echonest.github.com/remix/js/wavesurfer/wavesurfer.js')
+  script(src='http://echonest.github.com/remix/js/wavesurfer/drawer.js')
+  script(type='text/javascript')
+    // First-beat extraction and assembly
+    var apiKey = 'FILDTEOIK2HBORODV';
+    var trackID = 'TRCYWPQ139279B3308';
+    var trackURL = '/songs/1451_-_D.mp3';
+    var remixer;
+    var player;
+    var track;
+    var remixed;
+    function init() {
+    $('.btn').attr('disabled','disabled');
+    var wavesurfer = Object.create(WaveSurfer);
+    wavesurfer.init({
+    canvas: document.querySelector('#waveCanvas'),
+    waveColor: '#888888',
+    progressColor: '#000000',
+    loadingColor: '#000000',
+    cursorColor: '#888888'
+    });
+    var remixedWavesurfer = Object.create(WaveSurfer);
+    remixedWavesurfer.init({
+    canvas: document.querySelector('#RemixedWaveCanvas'),
+    waveColor: '#00ACEB',
+    progressColor: '#000000',
+    loadingColor: '#000000',
+    cursorColor: '#00ACEB'
+    });
+    if (window.webkitAudioContext === undefined) {
+    error("Sorry, this app needs advanced web audio. Your browser doesn't"
+    + " support it. Try the latest version of Chrome");
+    } else {
+    var context = new webkitAudioContext();
+    var fs;
+    // Only use the filesystem if we have access to it.
+    if (window.File && window.FileReader && window.FileList && window.Blob && window.webkitRequestFileSystem) {
+    window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
+    window.requestFileSystem(window.TEMPORARY, 1024*1024, function(filesystem) {
+    fs = filesystem;
+    }, fileErrorHandler);
+    }
+    remixer = createJRemixer(context, $, apiKey);
+    player = remixer.getPlayer();
+    $("#info").text("Loading analysis data...");
+    remixer.remixTrackById(trackID, trackURL, function(t, percent) {
+    track = t;
+    $("#info").text(percent + "% of the track loaded...");
+    if (percent == 100) {
+    $("#info").text(percent + "% of the track loaded, remixing...");
+    }
+    if (track.status == 'ok') {
+    wavesurfer.loadBuffer(track.analysis.beats);
+    $('.btn-original').removeAttr('disabled');
+    remixed = new Array();
+    // Extract the first beat of every bar.
+    var meter = parseInt(track.analysis.track.time_signature);
+    for (var i=0; i < track.analysis.beats.length; i++) {
+    if (i % meter == 0) {
+    remixed.push(track.analysis.beats[i])
+    }
+    }
+    $("#info").text("Remix complete!");
+    remixedWavesurfer.loadBuffer(remixed);
+    // Only use the filesystem if we have access to it.
+    if (fs) {
+    remixer.saveRemixLocally(fs, remixed, function(saveURL) {
+    $('#downloadButton').html('<a href="' + saveURL + '" target="_blank">Download Remix</a>')
+    });
+    }
+    $('.btn-remixed').removeAttr('disabled');
+    }
+    });
+    }
+    }
     window.onload = init;
-    | Welcome to One.html
-    #info  
-    //
-       These buttons will play and stop your remix.  
-    button(onclick='player.play(0, remixed);') Play!
-    button(onclick='player.stop()') Stop!
+  .navbar.navbar-inverse.navbar-fixed-top
+    .navbar-inner
+      .container
+        a.brand(href='index.html') Echo Nest Remix
+        .nav-collapse.collapse
+          ul.nav
+            li
+              a(href='http://echonest.github.com/remix/python.html') Python
+            li
+              a(href='http://echonest.github.com/remix/javascript.html') JavaScript
+            li
+              a(href='http://echonest.github.com/remix/examples.html') Examples
+            li
+              a(href='http://echonest.github.com/remix/who.html') Who
+        //
+          /.nav-collapse 
+  //
+    /.navbar 
+  .container
+    .hero-unit
+      h1
+        | remix.js:  one.
+        h1
+          #theCode
+            pre.
+              
+    #info
+    section
+      #waveform
+        h2 Original Track
+        canvas#waveCanvas(width='1024px', height='100px')
+        br
+        button.btn.btn-inverse.btn-original(onclick='player.play(0, track.analysis.beats);') Play Original
+        button.btn.btn-original(onclick='player.stop()') Stop Original
+      #newWaveform
+        h2 Remixed Track
+        canvas#RemixedWaveCanvas(width='1024px', height='100px')
+        br
+        button.btn.btn-inverse.btn-remixed(onclick='player.play(0, remixed);') Play Remix
+        button.btn.btn-remixed(onclick='player.stop()') Stop Remix
+        span#downloadButton
+    img(src='http://the.echonest.com/media/images/logos/250x80_lt.gif')
+  //
+     /container 
