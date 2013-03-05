@@ -1,13 +1,23 @@
 var echojs = require('echojs');
 var request = require('request');
+var models = require('./models');
 
 var echo = echojs({
   key: process.env.ECHONEST_KEY
 });
 
+
 // all the action goes down on the homepage
 
 exports.display = function(req, res){
+
+
+
+  models.Segment.count({}, function(err, data){
+    if (err) return console.log('error', err);
+    console.log("COUNT ###############");
+    console.log(data);
+  });
 	res.render('homepage', {title: 'Welcome to Acapellizer'});
 }
 

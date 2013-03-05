@@ -30,8 +30,8 @@ app.configure(function(){
 
 app.configure('development', function(){
   app.use(express.errorHandler());
-  mongoose.connect("mongodb://app:sexybitch@ds043467.mongolab.com:43467/echonest");
-  
+  // mongoose.connect("mongodb://app:sexybitch@ds043467.mongolab.com:43467/echonest");
+
   
 });
 
