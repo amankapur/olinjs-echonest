@@ -6,3 +6,5 @@ Usage: to use, you must first disable web security in Chrome. On Mac, this is do
 ```
 open -a Google\ Chrome --args --disable-web-security
 ```
+
+Note that only Taylor Swift's "I Knew You were Trouble" and The Beatles' "Hey Jude" are supported at this time. 
