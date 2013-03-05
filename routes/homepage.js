@@ -1,6 +1,5 @@
 var echojs = require('echojs');
 var request = require('request');
-var models = require('./models');
 
 var echo = echojs({
   key: process.env.ECHONEST_KEY
