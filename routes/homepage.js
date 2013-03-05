@@ -11,13 +11,6 @@ var echo = echojs({
 
 exports.display = function(req, res){
 
-
-
-  models.Segment.count({}, function(err, data){
-    if (err) return console.log('error', err);
-    console.log("COUNT ###############");
-    console.log(data);
-  });
 	res.render('homepage', {title: 'Welcome to Acapellizer'});
 }
 

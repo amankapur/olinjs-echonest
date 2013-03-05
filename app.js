@@ -24,7 +24,6 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser('your secret here'));
   app.use(express.session());
-  app.use(allowCrossDomain);
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
 });
@@ -36,7 +35,6 @@ app.configure('development', function(){
   
 });
 
-// GETS
 app.get('/', homepage.display);
 app.get('/users', user.list);
 app.get('/test-remixer', homepage.test_remixer);  
