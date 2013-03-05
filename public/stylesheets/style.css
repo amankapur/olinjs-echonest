@@ -13,3 +13,15 @@ a {
 	margin-left: auto;
 	margin-right: auto;
 }
+
+#title-and-caption{
+	text-align: center;
+}
+
+#pick-song-dialog{
+	text-align: center;
+}
+
+#acapellizer-title{
+	color: #b01717;
+}

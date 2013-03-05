@@ -8,7 +8,7 @@ var echo = echojs({
 // all the action goes down on the homepage
 
 exports.display = function(req, res){
-	res.render('homepage', {title: 'Welcome to Acappellizer'});
+	res.render('homepage', {title: 'Welcome to Acapellizer'});
 }
 
 exports.showSong = function(req, res){
