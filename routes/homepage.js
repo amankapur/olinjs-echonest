@@ -27,6 +27,7 @@ exports.showSong = function(req, res){
 // find a song
 // http://developer.echonest.com/docs/v4/song.html#search
 exports.searchSong = function(req, res){
+  res.redirect('/acapellized');
 	echo('song/search').get({
 		artist: req.body.artist_name,
 		title: req.body.song_name
@@ -42,7 +43,7 @@ exports.searchSong = function(req, res){
       request({url: anal, json:true}, function(error, response, data){
         //res.send(response.body.segments);
         //res.render('test-remix-js', {title: "Your Song, Acapellized!", song: req.body.song_name});
-        res.redirect('/acapellized');
+        // res.redirect('/acapellized');
       });
     });
 	});
@@ -50,7 +51,7 @@ exports.searchSong = function(req, res){
 
 // testing out remix.js
 exports.test_remixer = function(req, res){
-  res.render('test-remix-js', {title: "Acapellized Results"});
+  res.render('test-remix-js', {title: "Acapellized "});
 }
 
 
