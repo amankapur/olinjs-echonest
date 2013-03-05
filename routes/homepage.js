@@ -8,7 +8,7 @@ var echo = echojs({
 // all the action goes down on the homepage
 
 exports.display = function(req, res){
-	res.render('homepage', {title: 'Welcome to Acappellizer'});
+	res.render('homepage', {title: 'Welcome to Acapellizer'});
 }
 
 exports.showSong = function(req, res){
@@ -37,8 +37,17 @@ exports.searchSong = function(req, res){
       var track = profile.response.songs[0];
       var anal = track.audio_summary.analysis_url;
       request({url: anal, json:true}, function(error, response, data){
-        res.send(response.body.segments);
+        //res.send(response.body.segments);
+        res.render('display_acapella', {title: "Your Song, Acapellized!"});
       });
     });
 	});
 };
+
+// testing out remix.js
+exports.test_remixer = function(req, res){
+  res.render('test-remix-js', {title: "Testing Remix.js"});
+}
+
+
+

@@ -13,3 +13,23 @@ a {
 	margin-left: auto;
 	margin-right: auto;
 }
+
+#title-and-caption{
+	text-align: center;
+}
+
+#pick-song-dialog{
+	text-align: center;
+}
+
+#acapellizer-title{
+	color: #b01717;
+}
+
+/* styles for display_acapella */
+
+#powerchords-pic{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
