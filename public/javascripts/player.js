@@ -1,9 +1,9 @@
 // Remix two tracks at once.
 var apiKey = 'FILDTEOIK2HBORODV';
 var trackID = 'TRZCSSX13D3839F62A'; //hey jude
-var trackURL = 'http://reyner.be/trouble/24%20Hey%20Jude.mp3'
+var trackURL = 'https://dl.dropbox.com/u/1626266/hey_jude.mp3'
 var trackID2 = 'TRINGBD13D3B8B52B3'; //shamelessjude
-var trackURL2 = 'http://reyner.be/trouble/shamelessjude.mp3'
+var trackURL2 = 'https://dl.dropbox.com/u/1626266/shamelessjude.mp3'
 
 var remixer;
 var player;
